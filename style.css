@@ -120,7 +120,7 @@ nav a:hover {
 
 .hero-content h1 {
     /* Use clamp() for a fluid font size that adapts to the viewport */
-    font-size: clamp(1.6rem, 0.8rem + 4vw, 2.8rem); /* More aggressive scaling */
+    font-size: clamp(1.4rem, 0.5rem + 5vw, 2.8rem); /* More aggressive scaling */
     font-weight: 650;
     line-height: 1.2;
     margin-bottom: 0.55rem;
@@ -129,7 +129,7 @@ nav a:hover {
 
 .hero-content p {
     /* Use clamp() for a fluid font size that adapts to the viewport */
-    font-size: clamp(0.9rem, 0.5rem + 1.5vw, 1.3rem); /* More aggressive scaling */
+    font-size: clamp(0.8rem, 0.4rem + 2vw, 1.3rem); /* More aggressive scaling */
     line-height: 1.8;
     color: #1a1a2e;
     margin-bottom: 1.5rem;
