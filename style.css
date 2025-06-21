@@ -5,6 +5,10 @@
     --background-color: #1a1a2e;
     --text-color: #e0e0e0;
     --highlight-color: #f7b733; /* A guess, we can adjust */
+
+    /* For dynamic light beam shape. Starts narrower for a more aggressive animation. */
+    --beam-left-top-y: 20%;
+    --beam-left-bottom-y: 80%;
 }
 
 /* Global Styles */
@@ -109,23 +113,35 @@ nav a:hover {
 /* Refactored hero content to BE the light beam */
 .hero-content {
     position: absolute;
-    top: 15vh; /* Position from the top */
+    /* Positioning based on vw to scale with the hero image */
+    top: 9vw; /* Adjusted to keep beam centered on the light source */
     left: 0;
-    width: 85.5%; /* Extends the shape towards the lighthouse */
-    z-index: 2; /* Ensures text is on top of the background */
+    width: 85vw;
+    height: 35vw; /* Increased height to make the beam taller */
+    z-index: 2;
     background-color: var(--highlight-color);
-    /* This shape is now relative to the content block itself */
-    clip-path: polygon(0 0, 100% 38%, 100% 50%, 0 100%);
 
-    /* Padding creates space for the text inside the shape */
-    padding: 3rem 8rem 3rem 5vw;
-    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
-    max-width: none; /* Remove previous constraint */
+    /* The clip-path now works on a container with a fixed aspect ratio */
+    clip-path: polygon(
+        0 var(--beam-left-top-y),      /* Top-left (dynamic Y) */
+        100% 30%,                      /* Top-right (static) */
+        100% 70%,                      /* Bottom-right (static) */
+        0 var(--beam-left-bottom-y)    /* Bottom-left (dynamic Y) */
+    );
+
+    /* Flexbox to center the text content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 2vw 12vw 2vw 5vw; /* Adjusted padding */
+    box-sizing: border-box;
+    max-width: none;
 }
 
 .hero-content h1 {
-    /* Use clamp() for a fluid font size that adapts to the viewport */
-    font-size: clamp(1.4rem, 0.5rem + 5vw, 2.8rem); /* More aggressive scaling */
+    /* Even more aggressive scaling */
+    font-size: clamp(1rem, 10vw, 2.2rem);
     font-weight: 650;
     line-height: 1.2;
     margin-bottom: 0.55rem;
@@ -133,8 +149,8 @@ nav a:hover {
 }
 
 .hero-content p {
-    /* Use clamp() for a fluid font size that adapts to the viewport */
-    font-size: clamp(0.8rem, 0.4rem + 2vw, 1.3rem); /* More aggressive scaling */
+    /* Even more aggressive scaling for the paragraph text */
+    font-size: clamp(0.6rem, 0.4rem + 5vw, 1.2rem);
     line-height: 1.8;
     color: #1a1a2e;
     margin-bottom: 1.5rem;
@@ -225,18 +241,7 @@ nav a:hover {
         font-size: 1.5rem;
     }
 
-    /* Keep the hero content slanted on tablets */
-    @media (max-width: 768px) {
-        .hero-content {
-            position: relative;
-            top: 0;
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 4rem 2rem; /* Give it some space */
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Make it a rectangle on phones */
-        }
-    }
+    /* No override needed for hero-content at this breakpoint */
 }
 
 /* For tablets and smaller devices, switch to a simplified layout */
@@ -246,15 +251,6 @@ nav a:hover {
         position: relative;
         padding-bottom: 0;
     }
-    header .container {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
 
     /* Hero */
     #hero {
@@ -263,16 +259,36 @@ nav a:hover {
     }
 
     .hero-content {
-        position: relative; /* Return to normal document flow */
-        top: 0; /* Reset absolute positioning */
-        width: 100%;
-        max-width: 90%; /* Give some horizontal margin */
-        margin: 2rem auto; /* Center it with some vertical margin */
-        
-        /* Reset clip-path to a simple rectangle for the mobile layout */
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        
-        /* Adjust padding for smaller screens */
-        padding: 2rem 1.5rem;
+        /* On mobile, slightly reduce width and adjust padding for better layout */
+        width: 80vw;
+        height: 40vw; /* Adjust height for mobile */
+        padding: 5vw 15vw 5vw 5vw;
+    }
+}
+
+/* Progressively "open" the left side of the beam on narrower screens */
+@media (max-width: 1200px) {
+    :root {
+        --beam-left-top-y: 15%;
+        --beam-left-bottom-y: 85%;
+    }
+}
+@media (max-width: 992px) {
+    :root {
+        --beam-left-top-y: 10%;
+        --beam-left-bottom-y: 90%;
+    }
+}
+@media (max-width: 768px) {
+    :root {
+        --beam-left-top-y: 5%;
+        --beam-left-bottom-y: 95%;
+    }
+}
+@media (max-width: 480px) {
+    :root {
+        /* Widest opening on the narrowest screens */
+        --beam-left-top-y: 0%;
+        --beam-left-bottom-y: 100%;
     }
 } 
