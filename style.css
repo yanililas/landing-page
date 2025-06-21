@@ -135,25 +135,9 @@ nav a:hover {
     margin-bottom: 1.5rem;
 }
 
-/* Responsive Styles */
-@media (min-width: 1600px) {
-    header .container {
-        max-width: 1400px;
-    }
-}
+/* --- RESPONSIVE STYLES --- */
 
-@media (max-width: 992px) {
-    .hero-content {
-        position: relative; /* On smaller screens, return to normal flow */
-        width: 100%;
-        margin: 0 auto;
-        max-width: 90%;
-        top: 0;
-        /* Straighten beam on smaller screens */
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-}
-
+/* For tablets and smaller devices, switch to a simplified layout */
 @media (max-width: 768px) {
     /* Header */
     header {
@@ -164,7 +148,6 @@ nav a:hover {
         flex-direction: column;
         gap: 1.5rem;
     }
-
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -177,8 +160,17 @@ nav a:hover {
         min-height: auto;
     }
 
-    /* Adjust hero content padding for mobile and remove fixed font size */
     .hero-content {
+        position: relative; /* Return to normal document flow */
+        top: 0; /* Reset absolute positioning */
+        width: 100%;
+        max-width: 90%; /* Give some horizontal margin */
+        margin: 2rem auto; /* Center it with some vertical margin */
+        
+        /* Reset clip-path to a simple rectangle for the mobile layout */
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        
+        /* Adjust padding for smaller screens */
         padding: 2rem 1.5rem;
     }
 } 
