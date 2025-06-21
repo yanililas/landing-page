@@ -86,47 +86,50 @@ nav a:hover {
 /* Hero Section - Final Fix */
 #hero {
     padding: 0;
-    position: relative;
+    position: relative; /* Needed for the ::before pseudo-element */
     display: flex;
     align-items: center;
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1; /* CORRECTED: Force container to be square (1:1 ratio) */
-    background-image: url('assets/sans light.png');
+    background-image: url('assets/lighthouse.webp'); /* Use new transparent image */
     background-size: cover;
     background-position: center center; /* Perfect centering with correct aspect ratio */
     box-sizing: border-box;
 }
 
-.hero-content {
-    max-width: 550px;
-    position: relative;
-    z-index: 2;
-    padding: 3rem;
-    margin-left: 5vw; /* Position from left edge */
-}
+/* The separate light beam is no longer needed */
+/* #hero::before rule was here */
 
-.hero-content::before {
-    content: '';
+/* Refactored hero content to BE the light beam */
+.hero-content {
     position: absolute;
-    top: -15%;
-    left: -10%;
-    width: 120%;
-    height: 130%;
+    top: 15vh; /* Position from the top */
+    left: 0;
+    width: 85.5%; /* Extends the shape towards the lighthouse */
+    z-index: 2; /* Ensures text is on top of the background */
     background-color: var(--highlight-color);
-    z-index: -1;
-    clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+    /* This shape is now relative to the content block itself */
+    clip-path: polygon(0 0, 100% 38%, 100% 50%, 0 100%);
+
+    /* Padding creates space for the text inside the shape */
+    padding: 3rem 8rem 3rem 5vw;
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+    max-width: none; /* Remove previous constraint */
 }
 
 .hero-content h1 {
-    font-size: 3.2rem;
+    /* Use clamp() for a fluid font size that adapts to the viewport */
+    font-size: clamp(1.8rem, 1.2rem + 2vw, 2.8rem);
+    font-weight: 650;
     line-height: 1.2;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.55rem;
     color: #1a1a2e;
 }
 
 .hero-content p {
-    font-size: 1.1rem;
+    /* Use clamp() for a fluid font size that adapts to the viewport */
+    font-size: clamp(1rem, 0.7rem + 0.75vw, 1.3rem);
     line-height: 1.8;
     color: #1a1a2e;
     margin-bottom: 1.5rem;
@@ -141,11 +144,12 @@ nav a:hover {
 
 @media (max-width: 992px) {
     .hero-content {
+        position: relative; /* On smaller screens, return to normal flow */
+        width: 100%;
         margin: 0 auto;
         max-width: 90%;
-    }
-    .hero-content::before {
-        transform: none; /* Straighten beam on smaller screens */
+        top: 0;
+        /* Straighten beam on smaller screens */
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 }
