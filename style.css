@@ -6,9 +6,17 @@
     --text-color: #e0e0e0;
     --highlight-color: #f7b733; /* A guess, we can adjust */
 
-    /* For dynamic light beam shape. Starts narrower for a more aggressive animation. */
-    --beam-left-top-y: 20%;
-    --beam-left-bottom-y: 80%;
+    /* --- Full control over the light beam shape --- */
+    --beam-length: 85vw; /* NEW: Controls the length of the beam */
+    /* Values for screens > 1200px (Default) */
+    --beam-top-left-x: 0%;
+    --beam-top-left-y: 20%;
+    --beam-top-right-x: 100%;
+    --beam-top-right-y: 22%;
+    --beam-bottom-right-x: 100%;
+    --beam-bottom-right-y: 30%;
+    --beam-bottom-left-x: 0%;
+    --beam-bottom-left-y: 80%;
 }
 
 /* Global Styles */
@@ -103,7 +111,8 @@ nav a:hover {
     aspect-ratio: 1 / 1; /* CORRECTED: Force container to be square (1:1 ratio) */
     background-image: url('assets/lighthouse.webp'); /* Use new transparent image */
     background-size: cover;
-    background-position: center center; /* Perfect centering with correct aspect ratio */
+    /* Anchor the image to the right to keep the lighthouse in a stable position */
+    background-position: right center;
     box-sizing: border-box;
 }
 
@@ -114,46 +123,50 @@ nav a:hover {
 .hero-content {
     position: absolute;
     /* Positioning based on vw to scale with the hero image */
-    top: 9vw; /* Adjusted to keep beam centered on the light source */
+    top: 6vw; /* Adjusted to keep beam centered on the light source */
     left: 0;
-    width: 85vw;
-    height: 35vw; /* Increased height to make the beam taller */
+    width: var(--beam-length); /* NOW DYNAMIC */
+    height: 45vw; /* Increased height to make the beam taller */
     z-index: 2;
     background-color: var(--highlight-color);
 
     /* The clip-path now works on a container with a fixed aspect ratio */
     clip-path: polygon(
-        0 var(--beam-left-top-y),      /* Top-left (dynamic Y) */
-        100% 30%,                      /* Top-right (static) */
-        100% 70%,                      /* Bottom-right (static) */
-        0 var(--beam-left-bottom-y)    /* Bottom-left (dynamic Y) */
+        var(--beam-top-left-x) var(--beam-top-left-y),
+        var(--beam-top-right-x) var(--beam-top-right-y),
+        var(--beam-bottom-right-x) var(--beam-bottom-right-y),
+        var(--beam-bottom-left-x) var(--beam-bottom-left-y)
     );
 
     /* Flexbox to center the text content vertically */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* Align text to the top of the container instead of centering */
+    justify-content: flex-start;
 
-    padding: 2vw 12vw 2vw 5vw; /* Adjusted padding */
+    /* Increased right padding to keep text from being clipped by the polygon */
+    padding: 10vw 30vw 18vw 4vw;
     box-sizing: border-box;
     max-width: none;
 }
 
 .hero-content h1 {
-    /* Even more aggressive scaling */
-    font-size: clamp(1rem, 10vw, 2.2rem);
+    /* ACTUALLY reduced the minimum font size to prevent overflow */
+    font-size: clamp(0.2rem, 0.2rem + 2.5vw, 2.5rem);
     font-weight: 650;
     line-height: 1.2;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.00rem;
+    margin-right: 0vw; /* NEW: Independent right margin for the headline */
     color: #1a1a2e;
 }
 
 .hero-content p {
-    /* Even more aggressive scaling for the paragraph text */
-    font-size: clamp(0.6rem, 0.4rem + 5vw, 1.2rem);
-    line-height: 1.8;
+    /* ACTUALLY reduced the minimum font size to prevent overflow */
+    font-size: clamp(0.02rem, 0.02rem + 2vw, 1.2rem);
+    line-height: 1.3;
     color: #1a1a2e;
     margin-bottom: 1.5rem;
+    margin-right: 12vw; /* NEW: Independent right margin for the paragraph */
 }
 
 /* --- RESPONSIVE STYLES --- */
@@ -258,37 +271,162 @@ nav a:hover {
         min-height: auto;
     }
 
-    .hero-content {
-        /* On mobile, slightly reduce width and adjust padding for better layout */
-        width: 80vw;
-        height: 40vw; /* Adjust height for mobile */
-        padding: 5vw 15vw 5vw 5vw;
-    }
+    /* NOTE: The .hero-content padding override that was here has been moved into the responsive :root sections below for better organization. */
 }
 
 /* Progressively "open" the left side of the beam on narrower screens */
 @media (max-width: 1200px) {
+    .hero-content {
+        padding: 10vw 27vw 17vw 5vw;
+    }
+    .hero-content h1 {
+        margin-right: 2vw;
+    }
+    .hero-content p {
+        margin-right: 15vw;
+    }
     :root {
-        --beam-left-top-y: 15%;
-        --beam-left-bottom-y: 85%;
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 15%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 22%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 30%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 85%;
+    }
+}
+@media (max-width: 1100px) {
+    .hero-content {
+        padding: 10vw 24vw 14vw 5vw;
+    }
+    .hero-content h1 {
+        margin-right: 4vw;
+    }
+    .hero-content p {
+        margin-right: 18vw;
+    }
+    :root {
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 15%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 22%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 30%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 87%;
     }
 }
 @media (max-width: 992px) {
+    .hero-content {
+        padding: 9vw 21vw 14vw 5vw;
+    }
+    .hero-content h1 {
+        margin-right: 6vw;
+    }
+    .hero-content p {
+        margin-right: 22vw;
+    }
     :root {
-        --beam-left-top-y: 10%;
-        --beam-left-bottom-y: 90%;
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 15%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 22%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 30%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 90%;
+    }
+}
+@media (max-width: 880px) {
+    .hero-content {
+        padding: 8vw 18vw 12vw 5vw;
+    }
+    .hero-content h1 {
+        margin-right: 8vw;
+    }
+    .hero-content p {
+        margin-right: 35vw;
+    }
+    :root {
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 10%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 22%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 30%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 92%;
     }
 }
 @media (max-width: 768px) {
+    .hero-content {
+        height: 40vw; /* Adjust height for mobile */
+        padding: 7vw 15vw 10vw 5vw;
+    }
+    .hero-content h1 {
+        margin-right: 10vw;
+    }
+    .hero-content p {
+        margin-right:38vw;
+    }
     :root {
-        --beam-left-top-y: 5%;
-        --beam-left-bottom-y: 95%;
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 15%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 24%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 32%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 95%;
+    }
+}
+@media (max-width: 600px) {
+    .hero-content {
+        padding: 6vw 10vw 8vw 5vw;
+    }
+    .hero-content h1 {
+        margin-right: 12vw;
+    }
+    .hero-content p {
+        margin-right: 42vw;
+    }
+    :root {
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 10%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 24%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 32%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 97%;
     }
 }
 @media (max-width: 480px) {
+    .hero-content {
+        padding: 6vw 5vw 8vw 4vw;
+    }
+    .hero-content h1 {
+        margin-right: 15vw;
+    }
+    .hero-content p {
+        margin-right: 50vw;
+    }
     :root {
-        /* Widest opening on the narrowest screens */
-        --beam-left-top-y: 0%;
-        --beam-left-bottom-y: 100%;
+        --beam-length: 85vw;
+        --beam-top-left-x: 0%;
+        --beam-top-left-y: 15%;
+        --beam-top-right-x: 100%;
+        --beam-top-right-y: 24%;
+        --beam-bottom-right-x: 100%;
+        --beam-bottom-right-y: 32%;
+        --beam-bottom-left-x: 0%;
+        --beam-bottom-left-y: 100%;
     }
 } 
