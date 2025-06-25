@@ -3,47 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Averris</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.2">
-    <script src="script.js" defer></script>
+    <title>Averris – Rethinking Journalism</title>
+    <!-- Fonts: Source Serif 4, Source Sans 3, Recursive -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;700&family=Source+Serif+4:wght@400;700&family=Recursive:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="assets/logo light.png" alt="Averris Logo">
-                Averris
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">
+                <img src="assets/logo dark.png" alt="Averris logo" class="logo-img" />
+                <span class="logo-text">Averris</span>
             </a>
-            <nav>
-                <button class="menu-toggle" aria-label="Open navigation menu">
-                    <span class="hamburger"></span>
+            <button class="nav-toggle" aria-label="Open navigation menu">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="32" height="3" rx="1.5" fill="currentColor"/>
+                    <rect y="15" width="32" height="3" rx="1.5" fill="currentColor"/>
+                    <rect y="23" width="32" height="3" rx="1.5" fill="currentColor"/>
+                </svg>
                 </button>
-                <ul class="nav-menu">
-                    <li><a href="#mission">Mission</a></li>
-                    <li><a href="#product">Product</a></li>
+            <ul class="nav-links">
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#roles">Roles</a></li>
+                <li><a href="#reader-path">Readers</a></li>
+                <li><a href="#publisher-path">Publishers</a></li>
                     <li><a href="#founder">Founder</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <li><a href="#join">Join</a></li>
                 </ul>
-            </nav>
         </div>
-    </header>
+    </nav>
+
+    <div class="page-shell">
     <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1>An AI that guides, not answers.</h1>
-                <p>Averris guides you through the world's most trusted journalism — across languages, across perspectives. With clarity. With context.</p>
-            </div>
-        </section>
-        <!-- Other sections will go here -->
-        <section id="mission" class="content-section">
+            <!-- Hero Section -->
+            <section id="hero" class="hero">
+                <div class="container hero-content">
+                    <h1>The world is complex. Don't settle for shallow.</h1>
+                    <p>Averris guides you through deep journalism across languages and perspectives — so you can stay informed with clarity, context, and conviction.</p>
+                    <a href="https://tally.so/r/3lXjPp" class="btn btn-accent cta-survey" target="_blank" rel="noopener">Help us build a better system</a>
+                </div>
+            </section>
+
+            <!-- Problem Section -->
+            <section id="problem" class="problem-section">
+                <div class="container">
+                    <h2>The Frustration We All Feel</h2>
+                    <div class="card-grid">
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b43?auto=format&fit=crop&w=400&q=80" alt="Scrolling endlessly without understanding" class="card-img" />
+                            <div class="card-text">Scrolling endlessly without understanding</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Switching tabs, apps, summaries — still missing the full picture" class="card-img" />
+                            <div class="card-text">Switching tabs, apps, summaries — still missing the full picture</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="A world in crisis — and no clear way to follow it" class="card-img" />
+                            <div class="card-text">A world in crisis — and no clear way to follow it</div>
+                        </div>
+                    </div>
+                    <p class="problem-desc">The current information system doesn't serve us — it overwhelms us.<br>It feeds us fear. It feeds us noise. It feeds us confusion.<br><br>We believe truth and depth deserve better tools — built for all of us.</p>
+                </div>
+            </section>
+
+            <!-- Roles Section -->
+            <section id="roles" class="roles-section">
+                <div class="container">
+                    <h2>Two Roles. One Purpose.</h2>
+                    <p>We believe in the intelligence of our readers — and the integrity of our publishers. Averris exists to serve both.</p>
+                    <div class="roles-buttons">
+                        <a href="#reader-path" class="btn btn-secondary">🧠 I'm here to think more clearly</a>
+                        <a href="#publisher-path" class="btn btn-secondary">📰 I'm here to share what matters</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reader Path Section -->
+            <section id="reader-path" class="reader-section">
+                <div class="container">
+                    <h2>Your curiosity deserves structure. Your understanding deserves depth.</h2>
+                    <div class="card-grid">
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Start with a question" class="card-img" />
+                            <div class="card-text">🧭 Start with a question — not what trends</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Compare perspectives" class="card-img" />
+                            <div class="card-text">🌍 Compare perspectives — across countries and cultures</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Understand, don't just absorb" class="card-img" />
+                            <div class="card-text">🧠 Understand, don't just absorb — choose your own depth</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="No ads. No algorithms. No noise." class="card-img" />
+                            <div class="card-text">🧹 No ads. No algorithms. No noise.</div>
+                        </div>
+                    </div>
+                    <a href="https://tally.so/r/3lXjPp" class="btn btn-accent cta-survey" target="_blank" rel="noopener">Help us build a better system</a>
+                </div>
+            </section>
+
+            <!-- Publisher Path Section -->
+            <section id="publisher-path" class="publisher-section">
+                <div class="container">
+                    <h2>We see you. And we've built Averris with you in mind.</h2>
+                    <div class="card-grid">
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Revenue — based on real engagement, not clicks" class="card-img" />
+                            <div class="card-text">📈 Revenue — based on real engagement, not clicks</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Respect — your editorial voice is intact" class="card-img" />
+                            <div class="card-text">🤝 Respect — your editorial voice is intact</div>
+                        </div>
+                        <div class="card card-img-text">
+                            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Reach — connect with global readers who care" class="card-img" />
+                            <div class="card-text">🌍 Reach — connect with global readers who care</div>
+                        </div>
+                    </div>
+                    <a href="https://airtable.com/appQ83hKSChOb0pzZ/pagaHwkaHqgzAABdA/form" class="btn btn-outline" target="_blank" rel="noopener">Let us hear from you</a>
+                </div>
+            </section>
+
+            <!-- Founder Section -->
+            <section id="founder" class="founder-section">
+                <div class="container">
+                    <blockquote class="founder-quote">
+                        <p>I built Averris because I was doing what we all do — skimming headlines, saving tabs, asking AI to explain what I didn't really grasp. And still, I felt lost.</p>
+                        <p>Not uninformed — just unanchored.</p>
+                        <p>We don't need more content. We need better ways to think.</p>
+                        <p>Journalism is essential — but buried under noise and misread by machines.</p>
+                        <p>I wanted to build a space where clarity is possible, effort is rewarded, and curiosity has room to breathe.</p>
+                    </blockquote>
+                    <div class="founder-signature">— Yani, Founder of Averris</div>
+                </div>
+            </section>
+
+            <!-- Join Section -->
+            <section id="join" class="join-section">
             <div class="container">
-                <h2>Truth & Depth deserve better tools</h2>
-                <p>In a digital world engineered for speed, outrage, and passive consumption, quality journalism fights with one hand tied.</p>
+                    <h2>If you believe understanding matters — you're not alone.</h2>
+                    <p>Join the first readers building a cleaner, quieter, more intelligent way to follow the world.</p>
+                    <p>Join the people who still care about what's true, what's possible, and how the world works.</p>
+                    <div class="join-ctas">
+                        <a href="https://tally.so/r/3lXjPp" class="btn btn-accent cta-survey" target="_blank" rel="noopener">🧠 Help us build a better system</a>
+                    </div>
             </div>
         </section>
     </main>
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-brand">Averris</div>
+                <nav class="footer-nav">
+                    <a href="#hero">Home</a>
+                    <a href="#problem">Problem</a>
+                    <a href="#roles">Roles</a>
+                    <a href="#reader-path">Readers</a>
+                    <a href="#publisher-path">Publishers</a>
+                    <a href="#founder">Founder</a>
+                    <a href="#join">Join</a>
+                </nav>
+                <div class="footer-meta">&copy; 2024 Averris. All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Optional: Sticky CTA for mobile -->
+    <div class="sticky-cta">
+        <a href="https://tally.so/r/3lXjPp" class="btn btn-accent" target="_blank" rel="noopener">Help us build a better system</a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html> 
