@@ -615,8 +615,11 @@ section:first-of-type {
   .hero h1 {
     font-size: 1.7rem;
   }
+  h2, section h2 {
+    font-size: 1.1rem !important;
+  }
   section h2 {
-    font-size: 1.1rem;
+    font-size: 1.1rem !important;
   }
   .btn, .btn-accent, .btn-secondary, .btn-outline {
     padding: 1rem 1.2rem;
