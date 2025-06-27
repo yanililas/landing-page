@@ -166,7 +166,7 @@ section:first-of-type {
 }
 .hero h1 {
   font-family: var(--font-title);
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
   color: var(--ink);
@@ -308,6 +308,15 @@ section:first-of-type {
 .reader-section {
   background: var(--paper) !important;
 }
+.reader-section p:first-of-type {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
 .reader-section h2 {
   font-family: var(--font-title);
   font-size: 2rem;
@@ -336,6 +345,15 @@ section:first-of-type {
 
 .publisher-section {
   background: var(--paper);
+}
+.publisher-section p:first-of-type {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 .publisher-section h2 {
   font-family: var(--font-title);
@@ -597,6 +615,9 @@ section:first-of-type {
   .hero h1 {
     font-size: 1.7rem;
   }
+  h2 {
+    font-size: 1.1rem;
+  }
   .btn, .btn-accent, .btn-secondary, .btn-outline {
     padding: 1rem 1.2rem;
     font-size: 1rem;
@@ -803,5 +824,5 @@ section, h1, h2, h3, h4, h5, h6, p, blockquote {
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 } 
