@@ -1,23 +1,27 @@
-# Node modules
+# Dependencies
 node_modules/
+package-lock.json
+yarn.lock
 
 # Environment variables
 .env
 .env.local
 .env.production
 
-# Logs
-logs
-*.log
-npm-debug.log*
+# TinaCMS
+.tina/__generated__
+
+# Build output
+data/articles.json
+
+# Generated HTML articles (kept in git for now, but can be excluded later)
+# insights/*.html
+
+# Vercel
+.vercel
 
 # OS files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
 # Editor directories
@@ -26,14 +30,4 @@ Thumbs.db
 *.swp
 *.swo
 *~
-
-# Build outputs
-dist/
-build/
-
-# Netlify
-.netlify/
-
-# Optional: Ignore generated articles.json if you want it to be built on deploy
-# articles.json
 

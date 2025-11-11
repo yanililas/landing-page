@@ -1,79 +1,117 @@
-# 🚀 Quick Start: Using Your CMS
+# Quick Start Guide: TinaCMS Setup for Averris
 
-## Start in 3 Steps
+This guide will get you up and running with TinaCMS in under 10 minutes.
 
-### 1. Start a Local Server
-
-Open terminal in your project folder and run:
+## Step 1: Install Dependencies (2 min)
 
 ```bash
-python3 -m http.server 8000
+npm install
 ```
 
-Or if you have Node.js:
+## Step 2: Create TinaCMS Account (3 min)
+
+1. Go to [https://app.tina.io/register](https://app.tina.io/register)
+2. Sign up with GitHub (recommended)
+3. Create a new project called "Averris"
+4. When prompted, connect your GitHub repository
+5. Copy your credentials:
+   - **Client ID** (starts with `NEXT_PUBLIC_TINA_CLIENT_ID`)
+   - **Token** (starts with `TINA_TOKEN`)
+
+## Step 3: Configure Environment Variables (1 min)
+
+Create a `.env` file:
 
 ```bash
-npx http-server -p 8000
+cp .env.example .env
 ```
 
-### 2. Access the CMS
-
-Open your browser and go to:
+Edit `.env` and add your TinaCMS credentials:
 
 ```
-http://localhost:8000/admin
+NEXT_PUBLIC_TINA_CLIENT_ID=your_actual_client_id
+TINA_TOKEN=your_actual_token
+GITHUB_BRANCH=main
 ```
 
-You should see the Decap CMS interface!
-
-### 3. Create Your First Article
-
-1. Click **"New Insights"**
-2. Fill in the form:
-   - Title: "My First Article"
-   - Category: Choose one (thinkers/publishers/impact)
-   - Write your content in the editor
-3. Click **"Publish"**
-
-### 4. Update the Article List
-
-After creating articles, run:
+## Step 4: Initialize TinaCMS (1 min)
 
 ```bash
-node update-articles-index.js
+npx tinacms init
 ```
 
-This updates `articles.json` so your articles appear on the insights page.
+This generates the admin interface in the `/admin` folder.
 
-### 5. View Your Articles
+## Step 5: Build Articles (1 min)
 
-Navigate to:
+```bash
+npm run build
 ```
-http://localhost:8000/insights.html
+
+This converts your markdown articles to HTML pages.
+
+## Step 6: Test Locally (2 min)
+
+```bash
+npm run dev
 ```
 
-Your new article should appear in the list!
+Open your browser:
+- **Website**: `http://localhost:3000`
+- **Admin**: `http://localhost:3000/admin`
 
----
+Test creating a new article!
 
-## ⚠️ Important Notes
+## Step 7: Deploy to Vercel (Optional, 3 min)
 
-- **Test Repo Mode**: Currently configured for local testing only
-- **No Authentication**: In test mode, no login required
-- **For Production**: See `CMS-SETUP.md` for GitHub/Netlify setup
+### Via Vercel Dashboard
 
-## 🎯 Next Steps
+1. Go to [vercel.com](https://vercel.com)
+2. Click "Add New Project"
+3. Import your GitHub repository
+4. Add environment variables:
+   - `NEXT_PUBLIC_TINA_CLIENT_ID`
+   - `TINA_TOKEN`
+5. Click "Deploy"
 
-1. Create a few test articles
-2. Customize the CMS config in `admin/config.yml`
-3. Set up GitHub backend for production (see `CMS-SETUP.md`)
-4. Deploy to Netlify or your preferred host
+### Via CLI
 
-## 📖 Full Documentation
+```bash
+npm i -g vercel
+vercel
+```
 
-See `CMS-SETUP.md` for complete setup instructions and deployment options.
+Follow the prompts and add your environment variables when asked.
 
----
+## Done! 🎉
 
-**Ready to go? Start your server and visit `/admin`! 🎉**
+Your TinaCMS-powered site is now live. You can:
+
+- ✅ Edit articles at `https://your-site.vercel.app/admin`
+- ✅ View articles at `https://your-site.vercel.app/insights`
+- ✅ Auto-deploy on every Git push
+
+## Next Steps
+
+- Read the full [README.md](README.md) for detailed documentation
+- Explore [TinaCMS documentation](https://tina.io/docs/)
+- Set up a custom domain in Vercel
+- Invite team members to collaborate
+
+## Common Issues
+
+### "Cannot connect to TinaCMS"
+→ Check your `.env` file has the correct credentials
+
+### "Articles not showing"
+→ Make sure `published: true` in article frontmatter, then run `npm run build`
+
+### "Build failing on Vercel"
+→ Verify environment variables are set in Vercel project settings
+
+## Need Help?
+
+- Check [TinaCMS Discord](https://discord.com/invite/zumN63Ybpf)
+- See [Vercel Documentation](https://vercel.com/docs)
+- Review the main [README.md](README.md)
 

@@ -1,15 +1,20 @@
 {
-  "name": "averris-website",
+  "name": "averris-landing-page",
   "version": "1.0.0",
   "description": "Averris - Ethical AI for the Future of Journalism",
   "scripts": {
-    "start": "npx http-server -p 8000 -o",
-    "build": "node update-articles-index.js",
-    "dev": "npm run build && npm start"
+    "dev": "tinacms dev -c \"npm run dev:server\"",
+    "dev:server": "npx serve . -p 3000",
+    "build": "tinacms build && node scripts/build-articles.js",
+    "build:articles": "node scripts/build-articles.js"
   },
-  "keywords": ["cms", "decap", "journalism", "ai"],
-  "author": "Averris Team",
-  "license": "UNLICENSED",
-  "private": true
+  "dependencies": {
+    "@tinacms/cli": "^1.5.30",
+    "tinacms": "^1.5.30"
+  },
+  "devDependencies": {
+    "markdown-it": "^14.0.0",
+    "gray-matter": "^4.0.3"
+  }
 }
 
