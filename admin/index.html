@@ -9,6 +9,15 @@
   <script>
     window.CMS_MANUAL_INIT = true;
   </script>
+  <!-- Configure Netlify Identity URL -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.init({
+        APIUrl: "https://averris.netlify.app/.netlify/identity"
+      });
+    }
+  </script>
 </head>
 <body>
   <!-- Include the Decap CMS script -->
