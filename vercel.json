@@ -3,16 +3,6 @@
   "installCommand": "npm install",
   "framework": null,
   "outputDirectory": ".",
-  "routes": [
-    {
-      "src": "/admin",
-      "dest": "/admin/index.html"
-    },
-    {
-      "src": "/insights/([^/]+)\\.html",
-      "dest": "/insights/$1.html"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
