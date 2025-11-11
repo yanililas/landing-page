@@ -9,15 +9,6 @@
   <script>
     window.CMS_MANUAL_INIT = true;
   </script>
-  <!-- Configure Netlify Identity URL -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.init({
-        APIUrl: "https://averris.netlify.app/.netlify/identity"
-      });
-    }
-  </script>
 </head>
 <body>
   <!-- Include the Decap CMS script -->
@@ -28,6 +19,11 @@
     fetch('/admin/config.json')
       .then(response => response.json())
       .then(config => {
+        // Add Netlify Identity API URL to config
+        config.backend = config.backend || {};
+        config.backend.identity_url = "https://averris.netlify.app/.netlify/identity";
+        config.backend.gateway_url = "https://averris.netlify.app/.netlify/git/github";
+        
         CMS.init({ config });
       })
       .catch(err => {
