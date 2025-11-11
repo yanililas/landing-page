@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Insights — Ideas Shaping the Future of Journalism, AI & Democracy.">
+  <title>Insights — Averris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;700&family=Source+Serif+4:wght@400;700&family=Recursive:wght@400;700&family=Lora:ital,wght@1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/logo dark.png">
+  <meta property="og:title" content="Insights — Averris">
+  <meta property="og:description" content="Ideas shaping the future of journalism, AI & democracy.">
+  <meta property="og:image" content="https://averris.com/assets/logo%20dark.png">
+  <meta property="og:url" content="https://averris.com/insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://averris.com/insights">
+  <meta name="geo.region" content="FR"><meta name="geo.placename" content="Paris"><meta name="geo.position" content="48.8566;2.3522"><meta name="ICBM" content="48.8566, 2.3522">
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="/" class="logo">
+        <img src="assets/logo dark.png" alt="Averris" class="logo-img" />
+        <span class="logo-text">Averris</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation menu">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="7" width="32" height="3" rx="1.5" fill="currentColor"/><rect y="15" width="32" height="3" rx="1.5" fill="currentColor"/><rect y="23" width="32" height="3" rx="1.5" fill="currentColor"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="thinkers.html">Thinkers</a></li>
+        <li><a href="publishers.html">Publishers</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="insights.html" aria-current="page">Insights</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-shell">
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <h1>Ideas Shaping the Future of Information.</h1>
+          <div class="filter-bar" id="insights-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="thinkers">Thinkers</button>
+            <button class="filter-btn" data-filter="publishers">Publishers</button>
+            <button class="filter-btn" data-filter="impact">Impact</button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="card-grid" id="insights-list">
+            <a class="article-card" href="insights/thinker-sample.html" data-tag="thinkers">
+              <span class="tag-badge">Thinkers</span>
+              <h3>How to build a better brain diet</h3>
+              <p class="read-time">5 min read</p>
+            </a>
+            <a class="article-card" href="insights/publisher-sample.html" data-tag="publishers">
+              <span class="tag-badge">Publishers</span>
+              <h3>Zero‑click AI and the new funnel</h3>
+              <p class="read-time">7 min read</p>
+            </a>
+            <a class="article-card" href="insights/impact-sample.html" data-tag="impact">
+              <span class="tag-badge">Impact</span>
+              <h3>Automation and the public square</h3>
+              <p class="read-time">8 min read</p>
+            </a>
+            <a class="article-card" href="insights/thinker-sample.html" data-tag="thinkers">
+              <span class="tag-badge">Thinkers</span>
+              <h3>Bias maps: see the full picture</h3>
+              <p class="read-time">6 min read</p>
+            </a>
+            <a class="article-card" href="insights/publisher-sample.html" data-tag="publishers">
+              <span class="tag-badge">Publishers</span>
+              <h3>What survives automation? Editorial identity.</h3>
+              <p class="read-time">5 min read</p>
+            </a>
+            <a class="article-card" href="insights/impact-sample.html" data-tag="impact">
+              <span class="tag-badge">Impact</span>
+              <h3>Designing institutions for the AI era</h3>
+              <p class="read-time">6 min read</p>
+            </a>
+          </div>
+
+          <div style="text-align:center; margin-top:1rem;">
+            <button class="btn btn-secondary" disabled>Load more soon</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">Averris — Ethical AI for the Future of Journalism</div>
+        <nav class="footer-nav">
+          <a href="thinkers.html">Thinkers</a>
+          <a href="publishers.html">Publishers</a>
+          <a href="impact.html">Impact</a>
+          <a href="insights.html" aria-current="page">Insights</a>
+          <a href="about.html">About</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer-meta">Based in Paris · Operating across Europe</div>
+        <div class="footer-meta">© 2025 Averris S.A.S. · All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="load-articles.js"></script>
+  <!-- Netlify Identity redirect script -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

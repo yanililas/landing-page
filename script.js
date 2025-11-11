@@ -24,4 +24,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-}); 
+
+    // Insights filter bar
+    const filterContainer = document.getElementById('insights-filters');
+    const filterButtons = filterContainer ? filterContainer.querySelectorAll('.filter-btn') : [];
+    const insightsList = document.getElementById('insights-list');
+    if (filterButtons.length && insightsList) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const value = btn.getAttribute('data-filter');
+                insightsList.querySelectorAll('.article-card').forEach(card => {
+                    const tag = (card.getAttribute('data-tag') || '').toLowerCase();
+                    card.style.display = (value === 'all' || value === tag) ? '' : 'none';
+                });
+            });
+        });
+    }
+
+    // Simple forms: waitlist + contact (placeholder handlers)
+    const thinkerWaitlist = document.getElementById('thinker-waitlist');
+    if (thinkerWaitlist) {
+        thinkerWaitlist.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = thinkerWaitlist.querySelector('input[type="email"]').value;
+            try { localStorage.setItem('waitlist_email', email); } catch {}
+            alert('Thanks for joining the waiting list!');
+            thinkerWaitlist.reset();
+        });
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for your message. We will get back to you.');
+            contactForm.reset();
+        });
+    }
+});

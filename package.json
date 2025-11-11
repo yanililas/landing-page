@@ -1,0 +1,15 @@
+{
+  "name": "averris-website",
+  "version": "1.0.0",
+  "description": "Averris - Ethical AI for the Future of Journalism",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "build": "node update-articles-index.js",
+    "dev": "npm run build && npm start"
+  },
+  "keywords": ["cms", "decap", "journalism", "ai"],
+  "author": "Averris Team",
+  "license": "UNLICENSED",
+  "private": true
+}
+

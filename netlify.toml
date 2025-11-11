@@ -1,0 +1,35 @@
+# Netlify configuration for Averris
+# This file configures your Netlify deployment
+
+[build]
+  # Command to run before deploying
+  command = "node update-articles-index.js"
+  
+  # Directory to deploy
+  publish = "."
+
+# Redirect rules
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Enable Netlify Identity for Decap CMS authentication
+[build.environment]
+  NODE_VERSION = "18"
+
+# Optional: Git Gateway configuration (uncomment when ready)
+# [[plugins]]
+#   package = "netlify-plugin-cache"
+#   [plugins.inputs]
+#     paths = ["node_modules", ".cache"]
+

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://averris.com/sitemap.xml

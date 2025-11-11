@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main # or master, depending on your repo
+
+# Uncomment and configure when you're ready to deploy
+# For local testing, you can use test-repo backend:
+# backend:
+#   name: test-repo
+
+media_folder: "assets/articles" # Where uploaded images will be stored
+public_folder: "/assets/articles" # Public URL for uploaded images
+
+collections:
+  - name: "insights" # Used in routes, e.g., /admin/collections/insights
+    label: "Insights" # Used in the UI
+    folder: "articles" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template
+    fields: # The fields for each document
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Category", name: "category", widget: "select", options: ["thinkers", "publishers", "impact"]}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
+      - {label: "Read Time (minutes)", name: "readTime", widget: "number", default: 5, value_type: "int"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+

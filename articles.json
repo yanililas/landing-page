@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "sample-article",
+    "filename": "sample-article.md",
+    "title": "Welcome to Averris Insights",
+    "date": "2025-11-11T10:00:00.000Z",
+    "category": "impact",
+    "excerpt": "Discover how Averris is shaping the future of journalism through ethical AI and thoughtful innovation.",
+    "readTime": 5,
+    "author": "Averris Team",
+    "image": "",
+    "tags": [
+      "AI",
+      "Journalism",
+      "Ethics"
+    ]
+  }
+]
