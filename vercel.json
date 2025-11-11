@@ -1,6 +1,6 @@
 {
   "buildCommand": "node scripts/build-articles.js",
-  "installCommand": "npm ci --include=dev",
+  "installCommand": "npm install",
   "framework": null,
   "outputDirectory": ".",
   "routes": [
