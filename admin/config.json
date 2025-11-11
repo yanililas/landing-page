@@ -2,7 +2,9 @@
   "backend": {
     "name": "github",
     "repo": "yanililas/landing-page",
-    "branch": "main"
+    "branch": "main",
+    "base_url": "https://api.netlify.com",
+    "auth_endpoint": "auth"
   },
   "media_folder": "assets/articles",
   "public_folder": "/assets/articles",
