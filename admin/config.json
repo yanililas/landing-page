@@ -1,10 +1,7 @@
 {
   "backend": {
-    "name": "github",
-    "repo": "yanililas/landing-page",
-    "branch": "main",
-    "base_url": "https://averris.netlify.app",
-    "auth_endpoint": "/api/auth"
+    "name": "git-gateway",
+    "branch": "main"
   },
   "media_folder": "assets/articles",
   "public_folder": "/assets/articles",
