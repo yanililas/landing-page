@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager — Averris</title>
   <link rel="icon" type="image/png" href="../assets/logo dark.png">
+  <!-- Set manual init BEFORE loading CMS script -->
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
 </head>
 <body>
   <!-- Include the Decap CMS script -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
-  <!-- Load config from JSON instead of YML -->
+  <!-- Load config from JSON and initialize -->
   <script>
     fetch('/admin/config.json')
       .then(response => response.json())
       .then(config => {
-        window.CMS_MANUAL_INIT = true;
         CMS.init({ config });
       })
       .catch(err => {
