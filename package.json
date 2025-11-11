@@ -10,11 +10,9 @@
   },
   "dependencies": {
     "@tinacms/cli": "^1.5.30",
-    "tinacms": "^1.5.30"
-  },
-  "devDependencies": {
+    "tinacms": "^1.5.30",
     "markdown-it": "^14.0.0",
     "gray-matter": "^4.0.3"
-  }
+  },
+  "devDependencies": {}
 }
-
