@@ -8,8 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;700&family=Source+Serif+4:wght@400;700&family=Recursive:wght@400;700&family=Lora:ital,wght@1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/logo dark.png">
-  <!-- Netlify Identity Widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     .article-header {
@@ -163,18 +161,6 @@
   </div>
 
   <script src="script.js"></script>
-  <!-- Netlify Identity redirect script -->
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
   <script>
     async function loadArticle() {
       const urlParams = new URLSearchParams(window.location.search);

@@ -1,9 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main # or master, depending on your repo
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME  # TODO: Replace with your actual GitHub username and repo name
+  branch: main  # Change to 'master' if that's your default branch
 
-# Uncomment and configure when you're ready to deploy
-# For local testing, you can use test-repo backend:
+# For local testing without authentication, you can use test-repo backend:
 # backend:
 #   name: test-repo
 

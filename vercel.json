@@ -1,0 +1,7 @@
+{
+  "buildCommand": "node update-articles-index.js",
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "npm install"
+}
+
