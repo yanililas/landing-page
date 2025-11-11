@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager - Averris</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #f5f5f5;
+      }
+      .loading h1 {
+        color: #0818a8;
+        margin-bottom: 1rem;
+      }
+      .loading p {
+        color: #666;
+        margin: 0.5rem 0;
+      }
+      .btn {
+        margin-top: 2rem;
+        padding: 0.75rem 1.5rem;
+        background: #0818a8;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .btn:hover {
+        background: #051269;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading" id="loading">
+      <h1>TinaCMS Admin</h1>
+      <p>Setting up your content management interface...</p>
+      <p style="font-size: 0.9em; margin-top: 1rem;">
+        Please complete the TinaCMS setup by visiting your 
+        <a href="https://app.tina.io" target="_blank">TinaCMS Dashboard</a>
+      </p>
+      <a href="/" class="btn">← Back to Site</a>
+    </div>
+    <script>
+      // Redirect to TinaCMS dashboard for first-time setup
+      console.log('TinaCMS Admin - Redirecting to setup...')
+      
+      // Check if we have client ID configured
+      const hasConfig = document.cookie.includes('tinacms-auth')
+      
+      if (!hasConfig) {
+        document.getElementById('loading').innerHTML += `
+          <div style="max-width: 600px; padding: 2rem; margin-top: 2rem; background: white; border-radius: 8px; text-align: left;">
+            <h2 style="margin-top: 0;">📋 Setup Instructions</h2>
+            <ol style="line-height: 1.8;">
+              <li>Go to <a href="https://app.tina.io" target="_blank">app.tina.io</a></li>
+              <li>Find your project settings</li>
+              <li>Copy your <strong>Client ID</strong> and <strong>Token</strong></li>
+              <li>Add them to your Vercel environment variables</li>
+              <li>Redeploy your site</li>
+            </ol>
+            <p style="margin-top: 1.5rem; padding: 1rem; background: #fff3cd; border-radius: 4px;">
+              <strong>Note:</strong> Once configured, this page will automatically load the TinaCMS editing interface.
+            </p>
+          </div>
+        `
+      }
+    </script>
+  </body>
+</html>
+

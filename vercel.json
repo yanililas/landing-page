@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "node scripts/build-articles.js",
   "installCommand": "npm install",
   "framework": null,
   "outputDirectory": ".",
