@@ -1,6 +1,23 @@
 {
   "buildCommand": "node update-articles-index.js",
   "outputDirectory": ".",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "headers": [
+    {
+      "source": "/admin/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/admin/config.yml",
+      "destination": "/admin/config.yml"
+    }
+  ]
 }
 
