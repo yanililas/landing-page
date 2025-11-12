@@ -11,9 +11,10 @@ export default defineConfig({
   branch,
 
   // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  // Empty string fallback allows build to complete, but admin won't work without real values
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "",
   // Get this from tina.io
-  token: process.env.TINA_TOKEN,
+  token: process.env.TINA_TOKEN || "",
 
   build: {
     outputFolder: "admin",
