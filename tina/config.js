@@ -160,7 +160,7 @@ export default defineConfig({
         ],
         ui: {
           router: ({ document }) => {
-            return `/insights/${document._sys.filename}`;
+            return `/insights/${document._sys.filename}.html`;
           },
         },
       },
