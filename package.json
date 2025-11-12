@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tinacms dev -c \"npm run dev:server\"",
     "dev:server": "npx serve . -p 3000",
-    "build": "tinacms build && node scripts/build-articles.js && node scripts/generate-sitemap.js",
+    "build": "tinacms build --skip-cloud-checks && node scripts/build-articles.js && node scripts/generate-sitemap.js",
     "build:articles": "node scripts/build-articles.js",
     "build:sitemap": "node scripts/generate-sitemap.js",
     "seo:audit": "echo '📊 SEO Audit - Check these URLs:' && echo '- https://pagespeed.web.dev/' && echo '- https://validator.schema.org/' && echo '- https://search.google.com/test/mobile-friendly'"
