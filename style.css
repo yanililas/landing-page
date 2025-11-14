@@ -147,11 +147,16 @@ section:first-of-type {
 .hero-content p {
   font-size: 1.1rem;
   color: var(--ink);
-  margin-bottom: 1.2rem;
+  /* Tighten spacing before hero image */
+  margin-bottom: 0.7rem;
   font-family: var(--font-body);
   padding: 0.2rem 0 0.2rem 0;
   max-width: 700px;
   width: 100%;
+}
+/* Reduce extra vertical padding on hero subline only in hero */
+.hero .subline {
+  padding: 0.2rem 1rem !important;
 }
 .subline {
   padding: 0.5rem 1rem !important;
@@ -188,11 +193,13 @@ section:first-of-type {
 .hero-content .btn {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
 }
 
 .hero-img {
   display: block;
-  margin: 2rem auto 1.5rem auto;
+  /* Pull image closer to byline */
+  margin: 0.75rem auto 0.5rem auto;
   max-width: 700px;
   width: 100%;
   border-radius: 0;
@@ -344,7 +351,8 @@ section:first-of-type {
   }
   .hero-img {
     max-width: 100vw;
-    margin: 1.2rem auto 1rem auto;
+    /* Tighter spacing on mobile as well */
+    margin: 0.6rem auto 0.8rem auto;
   }
   .hero-content p {
     font-size: 1rem;
@@ -391,6 +399,11 @@ section:first-of-type {
   }
   h2, section h2 {
     font-size: 1.3rem !important;
+  }
+  /* Make card titles slightly smaller than H2 on small phones */
+  .card h3,
+  .article-card h3 {
+    font-size: 1.2rem;
   }
   .btn, .btn-accent {
     padding: 1rem 1.2rem;
