@@ -692,6 +692,24 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+/* Article pages: left-align reading content */
+.article-content,
+.article-header,
+.article-body,
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6,
+.article-body p,
+.article-body ul,
+.article-body ol,
+.article-body li,
+.article-body blockquote {
+  text-align: left;
+}
+
 /* Additional UI: insights + carousels */
 .carousel {
   display: grid;
