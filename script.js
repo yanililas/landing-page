@@ -63,4 +63,53 @@ document.addEventListener('DOMContentLoaded', function() {
             contactForm.reset();
         });
     }
+
+    // Article share button: copy current URL (with Web Share API fallback)
+    const shareButton = document.querySelector('.article-share-button');
+    if (shareButton) {
+        shareButton.addEventListener('click', async () => {
+            const url = window.location.href;
+            const originalLabel = shareButton.textContent || 'Share';
+
+            const showCopiedState = () => {
+                shareButton.textContent = 'Link copied';
+                shareButton.disabled = true;
+                setTimeout(() => {
+                    shareButton.textContent = originalLabel;
+                    shareButton.disabled = false;
+                }, 2000);
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share({ url });
+                    return;
+                }
+            } catch (err) {
+                // Fall through to clipboard-based sharing
+            }
+
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(url);
+                    showCopiedState();
+                    return;
+                }
+            } catch (err) {
+                // Fall through to legacy fallback
+            }
+
+            const tempInput = document.createElement('input');
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                // Swallow errors; worst case, no copy
+            }
+            document.body.removeChild(tempInput);
+            showCopiedState();
+        });
+    }
 });
