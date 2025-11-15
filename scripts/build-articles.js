@@ -75,7 +75,7 @@ function createArticleHTML(data, content, slug) {
       <article class="article-content">
         <div class="container" style="max-width: 800px;">
           <div class="article-header">
-            <a href="../insights.html" class="back-link">← Back to Insights</a>
+            <a href="../insights.html" class="back-link" aria-label="Back to Insights">←</a>
             <span class="tag-badge">${categoryLabel}</span>
             <h1>${data.title}</h1>
             <div class="article-meta">
@@ -177,4 +177,3 @@ try {
   console.error('Build failed:', error);
   process.exit(1);
 }
-
