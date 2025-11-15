@@ -120,6 +120,7 @@ function createArticleHTML(data, content, slug) {
   </div>
 
   <script src="../script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>`;
 }
