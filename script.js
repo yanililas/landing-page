@@ -65,17 +65,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Article share button: copy current URL (with Web Share API fallback)
-    const shareButton = document.querySelector('.article-share-button');
+    const shareButton = document.querySelector('.share-btn');
     if (shareButton) {
         shareButton.addEventListener('click', async () => {
             const url = window.location.href;
+            const originalHTML = shareButton.innerHTML;
             const originalLabel = shareButton.textContent || 'Share';
 
             const showCopiedState = () => {
-                shareButton.textContent = 'Link copied';
+                shareButton.classList.add('copied');
+                shareButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Copied!';
                 shareButton.disabled = true;
                 setTimeout(() => {
-                    shareButton.textContent = originalLabel;
+                    shareButton.classList.remove('copied');
+                    shareButton.innerHTML = originalHTML;
                     shareButton.disabled = false;
                 }, 2000);
             };

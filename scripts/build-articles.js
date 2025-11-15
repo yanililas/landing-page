@@ -29,7 +29,7 @@ function createArticleHTML(data, content, slug) {
   const categoryLabel = data.category.charAt(0).toUpperCase() + data.category.slice(1);
   const publishDate = new Date(data.publishDate).toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
   });
 
@@ -73,15 +73,25 @@ function createArticleHTML(data, content, slug) {
   <div class="page-shell">
     <main>
       <article class="article-content">
-        <div class="container" style="max-width: 800px;">
+        <div class="container">
           <div class="article-header">
-            <a href="../insights.html" class="back-link" aria-label="Back to Insights">←</a>
+            <a href="../insights.html" class="back-link" aria-label="Back to Insights">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+            </a>
             <span class="tag-badge">${categoryLabel}</span>
             <h1>${data.title}</h1>
             <div class="article-meta">
               ${data.author ? `<span class="author">By ${data.author}</span>` : ''}
               <span class="date">${publishDate}</span>
               <span class="read-time">${data.readTime}</span>
+              <button class="share-btn" aria-label="Share article">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z"/>
+                </svg>
+                Share
+              </button>
             </div>
           </div>
           <div class="article-body">
