@@ -48,6 +48,7 @@
     const categoryLabel = article.category.charAt(0).toUpperCase() + article.category.slice(1);
 
     card.innerHTML = `
+      ${article.featuredImage ? `<img src="${article.featuredImage}" alt="${article.title}" class="article-card-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 1rem;">` : ''}
       <span class="tag-badge">${categoryLabel}</span>
       <h3>${article.title}</h3>
       ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}

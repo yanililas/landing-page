@@ -33,6 +33,11 @@ function createArticleHTML(data, content, slug) {
     day: 'numeric'
   });
 
+  // Handle featured image for OG tags
+  const ogImage = data.featuredImage 
+    ? `https://averris.com${data.featuredImage}` 
+    : 'https://averris.com/assets/logo%20dark.png';
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +50,10 @@ function createArticleHTML(data, content, slug) {
   <link rel="icon" type="image/png" href="../assets/logo dark.png">
   <meta property="og:title" content="${data.title}">
   <meta property="og:description" content="${data.excerpt || data.title}">
-  <meta property="og:image" content="https://averris.com/assets/logo%20dark.png">
+  <meta property="og:image" content="${ogImage}">
   <meta property="og:url" content="https://averris.com/insights/${slug}.html">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${ogImage}">
   <link rel="canonical" href="https://averris.com/insights/${slug}.html">
 </head>
 <body>
@@ -93,6 +99,7 @@ function createArticleHTML(data, content, slug) {
                 Share
               </button>
             </div>
+            ${data.featuredImage ? `<img src="${data.featuredImage.startsWith('/') ? '..' : '../'}${data.featuredImage.startsWith('/') ? data.featuredImage : '/' + data.featuredImage}" alt="${data.title}" class="article-featured-image" style="width: 100%; max-width: 800px; height: auto; margin: 2rem auto; display: block; border-radius: 8px;">` : ''}
           </div>
           <div class="article-body">
             ${content}
@@ -167,6 +174,7 @@ function buildArticles() {
       readTime: data.readTime,
       excerpt: data.excerpt || '',
       author: data.author || '',
+      featuredImage: data.featuredImage || '',
       url: `/insights/${slug}.html`
     });
   });
