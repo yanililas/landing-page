@@ -26,10 +26,15 @@ if (!fs.existsSync(dataDir)) {
 
 // HTML template for article pages
 function createArticleHTML(data, content, slug) {
-  // Support both old 'category' and new 'tags' format
-  const tags = data.tags || (data.category ? [data.category] : ['article']);
-  const primaryTag = tags[0] || 'article';
-  const categoryLabel = primaryTag.charAt(0).toUpperCase() + primaryTag.slice(1);
+  // Handle both single category (old format) and categories array (new format)
+  const categories = Array.isArray(data.categories) ? data.categories : (data.category ? [data.category] : []);
+  const categoryBadges = categories
+    .map(cat => {
+      const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+      return `<span class="tag-badge">${label}</span>`;
+    })
+    .join(' ');
+  
   const publishDate = new Date(data.publishDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
@@ -89,7 +94,7 @@ function createArticleHTML(data, content, slug) {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
               </svg>
             </a>
-            <span class="tag-badge">${categoryLabel}</span>
+            ${categoryBadges}
             <h1>${data.title}</h1>
             <div class="article-meta">
               ${data.author ? `<span class="author">By ${data.author}</span>` : ''}
@@ -169,28 +174,20 @@ function buildArticles() {
     console.log(`✓ Generated: ${slug}.html`);
 
     // Add to articles array for JSON
-    // Support both old 'category' and new 'tags' format
-    const articleData = {
+    // Handle both single category (old format) and categories array (new format)
+    const categories = Array.isArray(data.categories) ? data.categories : (data.category ? [data.category] : []);
+    
+    articles.push({
       slug,
       title: data.title,
+      categories: categories,
       publishDate: data.publishDate,
       readTime: data.readTime,
       excerpt: data.excerpt || '',
       author: data.author || '',
       featuredImage: data.featuredImage || '',
       url: `/insights/${slug}.html`
-    };
-    
-    // Use tags if available, otherwise convert category to tags
-    if (data.tags && Array.isArray(data.tags)) {
-      articleData.tags = data.tags;
-    } else if (data.category) {
-      articleData.tags = [data.category];
-    } else {
-      articleData.tags = ['article'];
-    }
-    
-    articles.push(articleData);
+    });
   });
 
   // Sort articles by publish date (newest first)

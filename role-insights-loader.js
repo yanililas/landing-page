@@ -24,22 +24,25 @@
     }
   }
 
-  function createArticleCard(article, primaryTag) {
+  function createArticleCard(article) {
     const card = document.createElement('a');
     card.className = 'article-card';
     card.href = article.url;
     
-    // Support both old 'category' and new 'tags' format
-    const tags = article.tags || (article.category ? [article.category] : []);
-    const displayTag = primaryTag || tags[0] || 'article';
-    card.dataset.tag = displayTag;
+    // Handle both old format (single category) and new format (categories array)
+    const categories = Array.isArray(article.categories) ? article.categories : (article.category ? [article.category] : []);
+    card.dataset.tag = categories.join(',');
 
-    const categoryLabel =
-      displayTag.charAt(0).toUpperCase() + displayTag.slice(1);
+    const categoryBadges = categories
+      .map(cat => {
+        const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+        return `<span class="tag-badge">${label}</span>`;
+      })
+      .join(' ');
 
     card.innerHTML = `
       ${article.featuredImage ? `<img src="${article.featuredImage}" alt="${article.title}" class="article-card-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 1rem;">` : ''}
-      <span class="tag-badge">${categoryLabel}</span>
+      ${categoryBadges}
       <h3>${article.title}</h3>
       ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}
       <p class="read-time">${article.readTime}</p>
@@ -48,7 +51,7 @@
     return card;
   }
 
-  function populateCarousel(rootEl, articles, primaryTag) {
+  function populateCarousel(rootEl, articles) {
     if (!rootEl || !articles.length) return;
 
     // Ensure carousel styling
@@ -58,33 +61,33 @@
 
     rootEl.innerHTML = '';
     articles.forEach((article) => {
-      rootEl.appendChild(createArticleCard(article, primaryTag));
+      rootEl.appendChild(createArticleCard(article));
     });
   }
 
   function populateCarousels(allArticles) {
-    // Helper function to check if article has a specific tag
-    function hasTag(article, tag) {
-      // Support both old 'category' and new 'tags' format
-      if (article.tags && Array.isArray(article.tags)) {
-        return article.tags.includes(tag);
+    // Helper function to check if article has a specific category
+    function hasCategory(article, category) {
+      if (Array.isArray(article.categories)) {
+        return article.categories.includes(category);
       }
-      return article.category === tag;
+      // Backward compatibility with old single category format
+      return article.category === category;
     }
 
     if (thinkerCarousel) {
-      const thinkerArticles = allArticles.filter((a) => hasTag(a, 'thinkers'));
-      populateCarousel(thinkerCarousel, thinkerArticles, 'thinkers');
+      const thinkerArticles = allArticles.filter((a) => hasCategory(a, 'thinkers'));
+      populateCarousel(thinkerCarousel, thinkerArticles);
     }
 
     if (publisherCarousel) {
-      const publisherArticles = allArticles.filter((a) => hasTag(a, 'publishers'));
-      populateCarousel(publisherCarousel, publisherArticles, 'publishers');
+      const publisherArticles = allArticles.filter((a) => hasCategory(a, 'publishers'));
+      populateCarousel(publisherCarousel, publisherArticles);
     }
 
     if (impactCarousel) {
-      const impactArticles = allArticles.filter((a) => hasTag(a, 'impact'));
-      populateCarousel(impactCarousel, impactArticles, 'impact');
+      const impactArticles = allArticles.filter((a) => hasCategory(a, 'impact'));
+      populateCarousel(impactCarousel, impactArticles);
     }
   }
 
