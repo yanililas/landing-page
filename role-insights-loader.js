@@ -24,14 +24,18 @@
     }
   }
 
-  function createArticleCard(article) {
+  function createArticleCard(article, primaryTag) {
     const card = document.createElement('a');
     card.className = 'article-card';
     card.href = article.url;
-    card.dataset.tag = article.category;
+    
+    // Support both old 'category' and new 'tags' format
+    const tags = article.tags || (article.category ? [article.category] : []);
+    const displayTag = primaryTag || tags[0] || 'article';
+    card.dataset.tag = displayTag;
 
     const categoryLabel =
-      article.category.charAt(0).toUpperCase() + article.category.slice(1);
+      displayTag.charAt(0).toUpperCase() + displayTag.slice(1);
 
     card.innerHTML = `
       ${article.featuredImage ? `<img src="${article.featuredImage}" alt="${article.title}" class="article-card-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 1rem;">` : ''}
@@ -44,7 +48,7 @@
     return card;
   }
 
-  function populateCarousel(rootEl, articles) {
+  function populateCarousel(rootEl, articles, primaryTag) {
     if (!rootEl || !articles.length) return;
 
     // Ensure carousel styling
@@ -54,28 +58,33 @@
 
     rootEl.innerHTML = '';
     articles.forEach((article) => {
-      rootEl.appendChild(createArticleCard(article));
+      rootEl.appendChild(createArticleCard(article, primaryTag));
     });
   }
 
   function populateCarousels(allArticles) {
+    // Helper function to check if article has a specific tag
+    function hasTag(article, tag) {
+      // Support both old 'category' and new 'tags' format
+      if (article.tags && Array.isArray(article.tags)) {
+        return article.tags.includes(tag);
+      }
+      return article.category === tag;
+    }
+
     if (thinkerCarousel) {
-      const thinkerArticles = allArticles.filter(
-        (a) => a.category === 'thinkers'
-      );
-      populateCarousel(thinkerCarousel, thinkerArticles);
+      const thinkerArticles = allArticles.filter((a) => hasTag(a, 'thinkers'));
+      populateCarousel(thinkerCarousel, thinkerArticles, 'thinkers');
     }
 
     if (publisherCarousel) {
-      const publisherArticles = allArticles.filter(
-        (a) => a.category === 'publishers'
-      );
-      populateCarousel(publisherCarousel, publisherArticles);
+      const publisherArticles = allArticles.filter((a) => hasTag(a, 'publishers'));
+      populateCarousel(publisherCarousel, publisherArticles, 'publishers');
     }
 
     if (impactCarousel) {
-      const impactArticles = allArticles.filter((a) => a.category === 'impact');
-      populateCarousel(impactCarousel, impactArticles);
+      const impactArticles = allArticles.filter((a) => hasTag(a, 'impact'));
+      populateCarousel(impactCarousel, impactArticles, 'impact');
     }
   }
 

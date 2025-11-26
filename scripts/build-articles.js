@@ -26,7 +26,10 @@ if (!fs.existsSync(dataDir)) {
 
 // HTML template for article pages
 function createArticleHTML(data, content, slug) {
-  const categoryLabel = data.category.charAt(0).toUpperCase() + data.category.slice(1);
+  // Support both old 'category' and new 'tags' format
+  const tags = data.tags || (data.category ? [data.category] : ['article']);
+  const primaryTag = tags[0] || 'article';
+  const categoryLabel = primaryTag.charAt(0).toUpperCase() + primaryTag.slice(1);
   const publishDate = new Date(data.publishDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
@@ -166,17 +169,28 @@ function buildArticles() {
     console.log(`✓ Generated: ${slug}.html`);
 
     // Add to articles array for JSON
-    articles.push({
+    // Support both old 'category' and new 'tags' format
+    const articleData = {
       slug,
       title: data.title,
-      category: data.category,
       publishDate: data.publishDate,
       readTime: data.readTime,
       excerpt: data.excerpt || '',
       author: data.author || '',
       featuredImage: data.featuredImage || '',
       url: `/insights/${slug}.html`
-    });
+    };
+    
+    // Use tags if available, otherwise convert category to tags
+    if (data.tags && Array.isArray(data.tags)) {
+      articleData.tags = data.tags;
+    } else if (data.category) {
+      articleData.tags = [data.category];
+    } else {
+      articleData.tags = ['article'];
+    }
+    
+    articles.push(articleData);
   });
 
   // Sort articles by publish date (newest first)

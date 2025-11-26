@@ -37,7 +37,7 @@ export default defineConfig({
         defaultItem: () => {
           return {
             title: "New Article",
-            category: "thinkers",
+            tags: ["thinkers"],
             publishDate: new Date().toISOString(),
             readTime: "5 min read",
           }
@@ -52,9 +52,11 @@ export default defineConfig({
           },
           {
             type: "string",
-            name: "category",
-            label: "Category",
+            name: "tags",
+            label: "Tags",
+            description: "Select one or more tags. Article will appear in all selected carousels.",
             required: true,
+            list: true,
             options: [
               {
                 value: "thinkers",
