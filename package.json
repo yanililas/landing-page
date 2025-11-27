@@ -12,10 +12,12 @@
     "seo:audit": "echo '📊 SEO Audit - Check these URLs:' && echo '- https://pagespeed.web.dev/' && echo '- https://validator.schema.org/' && echo '- https://search.google.com/test/mobile-friendly'"
   },
   "dependencies": {
-    "@tinacms/cli": "^1.5.30",
     "@vercel/analytics": "^1.5.0",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.0.0",
     "tinacms": "^1.5.30"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.12.5"
   }
 }

@@ -43,13 +43,21 @@
     const card = document.createElement('a');
     card.className = 'article-card';
     card.href = article.url;
-    card.dataset.tag = article.category;
+    
+    // Handle both old format (single category) and new format (categories array)
+    const categories = Array.isArray(article.categories) ? article.categories : (article.category ? [article.category] : []);
+    card.dataset.tag = categories.join(',');
 
-    const categoryLabel = article.category.charAt(0).toUpperCase() + article.category.slice(1);
+    const categoryBadges = categories
+      .map(cat => {
+        const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+        return `<span class="tag-badge">${label}</span>`;
+      })
+      .join(' ');
 
     card.innerHTML = `
       ${article.featuredImage ? `<img src="${article.featuredImage}" alt="${article.title}" class="article-card-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 1rem;">` : ''}
-      <span class="tag-badge">${categoryLabel}</span>
+      ${categoryBadges}
       <h3>${article.title}</h3>
       ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}
       <p class="read-time">${article.readTime}</p>
@@ -65,9 +73,9 @@
     const cards = insightsList.querySelectorAll('.article-card');
     
     cards.forEach(card => {
-      const cardTag = card.dataset.tag;
+      const cardTags = card.dataset.tag.split(',');
       
-      if (filterValue === 'all' || cardTag === filterValue) {
+      if (filterValue === 'all' || cardTags.includes(filterValue)) {
         card.style.display = '';
       } else {
         card.style.display = 'none';
